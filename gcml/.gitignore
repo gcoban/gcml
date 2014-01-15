@@ -1,0 +1,16 @@
+# Netbeans
+
+build/
+dist/
+lib/CopyLibs/
+lib/nblibraries.properties
+nbproject/
+build.xml
+manifest.mf
+
+
+# Eclipse
+.settings/
+bin/
+.classpath
+.project
