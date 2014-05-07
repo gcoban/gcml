@@ -106,7 +106,7 @@ public class Estimator {
 	}
 
 	/**
-	 * Calculate variance vector of data
+	 * Calculates variance vector of data
 	 * 
 	 * @param data
 	 * @return
@@ -117,7 +117,7 @@ public class Estimator {
 	}
 
 	/**
-	 * Calculate variance vector of data
+	 * Calculates variance vector of data
 	 * 
 	 * @param data
 	 * @param meanVector
@@ -131,5 +131,20 @@ public class Estimator {
 		for (int i = 0; i < varianceVector.getRowDimension(); i++)
 			varianceVector.set(i, 0, covarianceMatrix.get(i, i));
 		return varianceVector;
+	}
+	
+	/**
+	 * Calculates standart deviation vector of variance vector
+	 * 
+	 * @param varianceVector
+	 * @return
+	 */
+	public static Matrix standartDeviation(final Matrix varianceVector) {
+		
+		Matrix standartDeviationVector = new Matrix(varianceVector.getRowDimension(), 1);
+		for (int i = 0; i < varianceVector.getRowDimension(); i++) {
+			standartDeviationVector.set(i, 0, Math.sqrt(varianceVector.get(i, 0)));
+		}
+		return standartDeviationVector;
 	}
 }
