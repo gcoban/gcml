@@ -22,6 +22,13 @@ public class MatrixHelper {
 			columnVector.set(j, 0, data.get(j, i));
 		return columnVector;
 	}
+	
+	public static Matrix getDiagonalVector(Matrix data) {
+		Matrix diagonalVector = new Matrix(data.getColumnDimension(), 1);
+		for (int i = 0; i < diagonalVector.getRowDimension(); i++)
+			diagonalVector.set(i, 0, data.get(i, i));
+		return diagonalVector;
+	}
 
 	public static boolean compare(Matrix firstMatrix, Matrix secondMatrix) {
 
@@ -39,5 +46,20 @@ public class MatrixHelper {
 			}
 		}
 		return true;
+	}
+	
+	/*
+	 * Deletes vector from every row of matrix
+	 */
+	public static Matrix minusVector(final Matrix matrix, final Matrix vector) {
+		Matrix returnMatrix = new Matrix(matrix.getRowDimension(), matrix.getColumnDimension());
+		
+		for (int i = 0; i < matrix.getRowDimension(); i++) {
+			for (int j = 0; j < matrix.getColumnDimension(); j++) {
+				returnMatrix.set(i, j, matrix.get(i, j) - vector.get(j, 0));
+			}
+		}
+		
+		return returnMatrix;
 	}
 }

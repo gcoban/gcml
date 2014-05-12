@@ -91,17 +91,15 @@ public class Estimator {
 	 */
 	public static Matrix covariance(final Matrix data, final Matrix meanVector) {
 
-		Matrix tempMatrix = new Matrix(data.getRowDimension(), data.getColumnDimension());
-
-		// Matrix = Data Matrix - Mean Vector
-		// Decrease each instance of data by meanVector into matrix
-		for (int i = 0; i < tempMatrix.getRowDimension(); i++)
-			for (int j = 0; j < tempMatrix.getColumnDimension(); j++)
-				tempMatrix.set(i, j, data.get(i, j) - meanVector.get(j, 0));
-
-		// Covariance Matrix = Tranpose(Matrix) * Matrix
+		Matrix tempMatrix = MatrixHelper.minusVector(data, meanVector);
 		Matrix covarianceMatrix = tempMatrix.transpose().times(tempMatrix);
-		// .times(1.0 / tempMatrix.getRowDimension());
+		
+		// Normalize by N – 1, if N > 1, where N is the number of observations.
+		int n = data.getRowDimension();
+		if (n > 1) {
+			covarianceMatrix = covarianceMatrix.times(1.0 / (n - 1));
+		}
+		
 		return covarianceMatrix;
 	}
 
@@ -127,10 +125,7 @@ public class Estimator {
 	public static Matrix variance(final Matrix data, final Matrix meanVector) {
 
 		Matrix covarianceMatrix = covariance(data, meanVector);
-		Matrix varianceVector = new Matrix(covarianceMatrix.getColumnDimension(), 1);
-		for (int i = 0; i < varianceVector.getRowDimension(); i++)
-			varianceVector.set(i, 0, covarianceMatrix.get(i, i));
-		return varianceVector;
+		return MatrixHelper.getDiagonalVector(covarianceMatrix);
 	}
 	
 	/**
