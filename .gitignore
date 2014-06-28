@@ -14,3 +14,4 @@ manifest.mf
 bin/
 .classpath
 .project
+/target
