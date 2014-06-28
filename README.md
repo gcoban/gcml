@@ -1,7 +1,7 @@
 gcml
 ====
 
-GCML is a mini “Machine Learning Framework” that can be helpful to the students who are interesting in Machine Learning. The algorithms are implemented mostly through the textbook referenced below.
+GCML is a mini “Machine Learning Framework” that can be helpful to the students who are interested in Machine Learning. The algorithms are implemented mostly through the textbook referenced below.
 
 **Alpaydın, E.** (2010). Introduction to Machine Learning (2nd edition). London: The MIT Press
 
